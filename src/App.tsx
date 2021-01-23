@@ -1,12 +1,18 @@
 import React from "react";
-
+import { ApolloProvider } from "@apollo/client";
 import Container from "@material-ui/core/Container";
 
-const App = (): JSX.Element => (
+import client from "./client";
+import Data from './components/atoms/Comp/Comp'
+
+const App: React.FC = (): JSX.Element => (
   <Container>
-    <p>
-      Edit <code>src/App.tsx</code> and save to reload.
-    </p>
+    <ApolloProvider client={client}>
+      <p>
+        Edit <code>src/App.tsx</code> and save to reload.
+      </p>
+      <Data />
+    </ApolloProvider>
   </Container>
 );
 
