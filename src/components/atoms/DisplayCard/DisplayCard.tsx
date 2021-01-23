@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, FC } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -21,7 +21,7 @@ interface Props {
   languages: Record<string, string>[];
 }
 
-const DisplayCard: React.FC<Props> = ({
+const DisplayCard: FC<Props> = ({
   name,
   nativeName,
   population,
@@ -30,6 +30,15 @@ const DisplayCard: React.FC<Props> = ({
   languages,
 }) => {
   const { root } = useStyles();
+  const [officialLanguages, setOfficialLanguages] = useState(languages);
+
+  useEffect(() => {
+    if (languages.length > 5) {
+      setOfficialLanguages(languages.slice(0, 5));
+    }
+  }, []);
+
+  const names = nativeName === name ? name : `${name}, ${nativeName}`
 
   return (
     <Card variant="outlined" raised className={root}>
@@ -40,7 +49,7 @@ const DisplayCard: React.FC<Props> = ({
           gutterBottom
           component="h1"
         >
-          {name}, {nativeName}
+          {names}
         </Typography>
         <Box display="flex" justifyContent="center" alignItems="center">
           <img
@@ -67,11 +76,11 @@ const DisplayCard: React.FC<Props> = ({
           variant="subtitle1"
           component="h3"
           color="textPrimary"
-          align='center'
+          align="center"
         >
           Official Languages
         </Typography>
-        {languages.map((language) => {
+        {officialLanguages.map((language) => {
           return (
             <Typography variant="body1" component="p" color="textSecondary">
               {language.name}
