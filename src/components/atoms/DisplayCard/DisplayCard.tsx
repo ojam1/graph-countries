@@ -36,9 +36,9 @@ const DisplayCard: FC<Props> = ({
     if (languages.length > 5) {
       setOfficialLanguages(languages.slice(0, 5));
     }
-  }, []);
+  }, [languages]);
 
-  const names = nativeName === name ? name : `${name}, ${nativeName}`
+  const names = nativeName === name ? name : `${name}, ${nativeName}`;
 
   return (
     <Card variant="outlined" raised className={root}>
@@ -82,7 +82,12 @@ const DisplayCard: FC<Props> = ({
         </Typography>
         {officialLanguages.map((language) => {
           return (
-            <Typography variant="body1" component="p" color="textSecondary">
+            <Typography
+              variant="body1"
+              component="p"
+              color="textSecondary"
+              key={language.name}
+            >
               {language.name}
             </Typography>
           );

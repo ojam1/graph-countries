@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useQuery, gql } from "@apollo/client";
 import Grid from "@material-ui/core/Grid";
 
@@ -36,8 +36,8 @@ interface Country {
   __typename: string;
 }
 
-const Main: React.FC = (): JSX.Element => {
-  const { loading, error, data } = useQuery(COUNTRY_DATA);
+const Main: FC = (): JSX.Element => {
+  const { loading, data,  error } = useQuery(COUNTRY_DATA);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -47,9 +47,8 @@ const Main: React.FC = (): JSX.Element => {
       <Grid item xs={12}>
         <Grid container spacing={2}>
           {data.Country.map((country: Country) => {
-
             return (
-              <Grid item>
+              <Grid item key={country.name}>
                 <DisplayCard
                   name={country.name}
                   capital={country.capital}
