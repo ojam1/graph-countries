@@ -1,8 +1,10 @@
 import React, { FC } from "react";
 import { useQuery, gql } from "@apollo/client";
 import Grid from "@material-ui/core/Grid";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Box from "@material-ui/core/Box";
 
-import DisplayCard from "../../atoms/DisplayCard/DisplayCard";
+import DisplayCard from "../../components/atoms/DisplayCard/DisplayCard";
 
 const COUNTRY_DATA = gql`
   query GetCountryData {
@@ -37,9 +39,14 @@ interface Country {
 }
 
 const Main: FC = (): JSX.Element => {
-  const { loading, data,  error } = useQuery(COUNTRY_DATA);
+  const { loading, data, error } = useQuery(COUNTRY_DATA);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <CircularProgress />
+      </Box>
+    );
   if (error) return <p>Error :(</p>;
 
   return (

@@ -3,12 +3,12 @@ import { ApolloProvider } from "@apollo/client";
 import Container from "@material-ui/core/Container";
 
 import client from "./client";
-import Grid from "./components/molecules/Grid/Grid";
+import Main from "./pages/Main/Main";
 
 const App: React.FC = (): JSX.Element => (
   <Container>
     <ApolloProvider client={client}>
-      <Grid />
+      <Main />
     </ApolloProvider>
   </Container>
 );
