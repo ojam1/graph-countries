@@ -2,7 +2,7 @@ import React from "react";
 import { ApolloProvider } from "@apollo/client";
 import Container from "@material-ui/core/Container";
 
-import client from "./client";
+import client from "./apollo/client";
 import Main from "./pages/Main/Main";
 
 const App: React.FC = (): JSX.Element => (

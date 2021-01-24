@@ -1,32 +1,11 @@
 import React, { FC } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Box from "@material-ui/core/Box";
 
 import DisplayCard from "../../components/atoms/DisplayCard/DisplayCard";
-
-const COUNTRY_DATA = gql`
-  query GetCountryData {
-    Country {
-      name
-      nativeName
-      population
-      capital
-      officialLanguages {
-        iso639_1
-        iso639_2
-        name
-        nativeName
-      }
-      flag {
-        emoji
-        emojiUnicode
-        svgFile
-      }
-    }
-  }
-`;
+import { COUNTRY_DATA } from "../../apollo/queries";
 
 interface Country {
   capital: string;
