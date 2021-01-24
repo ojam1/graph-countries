@@ -33,15 +33,24 @@ const Main: FC = (): JSX.Element => {
       <Grid item xs={12}>
         <Grid container spacing={2}>
           {data.Country.map((country: Country) => {
+            const {
+              name,
+              nativeName,
+              capital,
+              flag: { svgFile },
+              officialLanguages,
+              population,
+            } = country;
+
             return (
               <Grid item key={country.name}>
                 <DisplayCard
-                  name={country.name}
-                  capital={country.capital}
-                  population={country.population}
-                  nativeName={country.nativeName}
-                  flag={country.flag.svgFile}
-                  languages={country.officialLanguages}
+                  name={name}
+                  capital={capital}
+                  population={population}
+                  nativeName={nativeName}
+                  flag={svgFile}
+                  languages={officialLanguages}
                 />
               </Grid>
             );
